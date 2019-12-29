@@ -1,0 +1,32 @@
+<section>
+    <form #objetoForm="ngForm" (ngSubmit)="addObjeto(objetoForm)">
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="objetoService.selectedObjeto._id">
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="objetoService.selectedObjeto.name" placeholder="Ingresa tu nombre">
+        <input type="text" name="position" #position="ngModel" [(ngModel)]="objetoService.selectedObjeto.position" placeholder="Ingresa tu puesto">
+        <input type="text" name="office" #office="ngModel" [(ngModel)]="objetoService.selectedObjeto.office" placeholder="Ingresa tu oficina">
+        <input type="text" name="salary" #salary="ngModel" [(ngModel)]="objetoService.selectedObjeto.salary" placeholder="Ingresa tu salario">
+
+        <button (click)="resetForm(objetoForm)">Clean</button>
+        <button>Save</button>
+    </form>
+</section>
+<section>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Salary</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let obj of objetoService.objetos">
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.position }}</td>
+                <td>{{ obj.office }}</td>
+                <td>{{ obj.salary }}</td>
+                <td><button (click)="editarObjeto(obj)">Editar</button></td>
+                <td><button (click)="borrarObjeto(obj._id)">Borrar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
